@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
 @RequiredArgsConstructor
 public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     private final AppUserRepository appUserRepository;
