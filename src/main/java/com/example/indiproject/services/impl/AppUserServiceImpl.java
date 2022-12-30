@@ -6,6 +6,7 @@ import com.example.indiproject.models.AppUser;
 import com.example.indiproject.repositories.AppUserRepository;
 import com.example.indiproject.services.api.AppUserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,8 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
 @RequiredArgsConstructor
+@Slf4j
 public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     private final AppUserRepository appUserRepository;
     @Autowired
@@ -32,12 +33,16 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     public boolean appUserNameIsAppropriate(String userName) {
         userName = userName.toLowerCase();
         if (userName.contains("fuck")) {
+            log.error("Forbidden name: contains: \"fuck\"");
             return false;
         } else if (userName.contains("shit")) {
+            log.error("Forbidden name: contains: \"shit\"");
             return false;
         } else if (userName.contains("bitch")) {
+            log.error("Forbidden name: contains: \"bitch\"");
             return false;
         } else {
+            log.info("Name is appropriate");
             return true;
         }
     }
